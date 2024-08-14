@@ -4,8 +4,8 @@ from posts.models import Post
 from .forms import PostForm
 
 class IndexView(View):
-  def get(self,request,*args,**kwargs):
-    posts =  Post.objects.all().order_by('-created_at')
+  def get(self, request, *args, **kwargs):
+    posts =  Post.objects.all()
     return render(request, 'posts/index.html',{'posts':posts})
     
 class CreateView(View):
