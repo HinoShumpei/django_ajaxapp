@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.views import View
 from posts.models import Post
 from .forms import PostForm
@@ -12,9 +13,15 @@ class IndexView(View):
   def post(self, request, *args, **kwargs):
     form = PostForm(request.POST)
     if form.is_valid():
-      form.save()
-    return redirect('posts:index')
-    
+      post = form.save()
+      return JsonResponse({
+        'content': post.content,
+        'created_at': post.created_at
+      })
+    else :
+      return JsonResponse({
+            'errors': form.errors
+        }, status=400)
 # class CreateView(View):
 #   def get(self, request, *args, **kwargs):
 #     form = PostForm()
