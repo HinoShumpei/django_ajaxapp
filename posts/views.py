@@ -22,6 +22,7 @@ class IndexView(View):
       return JsonResponse({
             'errors': form.errors
         }, status=400)
+    
 # class CreateView(View):
 #   def get(self, request, *args, **kwargs):
 #     form = PostForm()
