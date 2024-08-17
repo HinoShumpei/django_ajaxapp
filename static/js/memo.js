@@ -42,7 +42,6 @@ function post (){
       }
       return response.json();
     })
-    .then(response => response.json())
     .then(data => {
       const postsContainer = document.querySelector('.posts-container');
       const formattedDate = formatDate(data.created_at);
